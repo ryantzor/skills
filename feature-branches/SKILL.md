@@ -91,6 +91,23 @@ gh pr merge --squash --delete-branch
 
 Or via GitHub UI: **Squash and merge**.
 
+### Local Cleanup
+
+After the PR is merged and remote branch deleted, prompt the user before cleaning up the local branch:
+
+> Always prompt — never delete a local branch without a confirm dialog.
+
+Ask the user (use the `question` tool):
+
+> "Branch 'feature/xxx' has been merged. Delete local branch?"
+> Options: "Yes, clean up", "Keep local branch"
+
+If confirmed, run:
+
+```bash
+git checkout main && git pull origin main && git branch -d feature/xxx
+```
+
 ## Commit Messages
 
 Free-form on feature branches — they get squashed into one message on merge.
